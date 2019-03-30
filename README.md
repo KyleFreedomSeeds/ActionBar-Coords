@@ -6,7 +6,7 @@
 If you need any help, please contact us on our support [Discord](https://discord.gg/mGgfyaS)
 
 ## Commands/Permissions
-**/coords** - Opens the menu to enable/disable ActionBar Coords for the player
+**/coords** - Opens the menu to enable/disable ActionBar Coords for the player - `actionbarcoods.base`
 
 **/coords discord** - Links to our support Discord 
 
