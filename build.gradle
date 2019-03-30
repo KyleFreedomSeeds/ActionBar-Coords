@@ -1,0 +1,17 @@
+plugins {
+    id 'org.spongepowered.plugin' version '0.8.1'
+}
+
+group = pluginGroup
+version = pluginVersion
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile 'org.spongepowered:spongeapi:7.1.0-SNAPSHOT'
+    compile 'me.lucko.luckperms:luckperms-api:4.3'
+}
+
+sponge.plugin.id = pluginId

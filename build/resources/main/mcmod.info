@@ -1,0 +1,17 @@
+[
+    {
+        "modid": "actionbar-coords",
+        "name": "ActionBar Coords",
+        "version": "1.0.0",
+        "description": "Neat plugin that shows toggleable coords on your action bar.",
+        "authorList": [
+            "juliann"
+        ],
+        "dependencies": [
+            "spongeapi@7.1.0-SNAPSHOT"
+        ],
+        "requiredMods": [
+            "spongeapi@7.1.0-SNAPSHOT"
+        ]
+    }
+]
