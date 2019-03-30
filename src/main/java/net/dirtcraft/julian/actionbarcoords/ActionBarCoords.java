@@ -64,6 +64,7 @@ public class ActionBarCoords {
         CommandSpec command = CommandSpec.builder()
                 .description(Text.of("Base command for " + container.getName()))
                 .executor(new Menu())
+                .permission("actionbarcoords.base")
                 .child(reloadCmd, "reload", "rl")
                 .child(discordCmd, "discord", "disc")
                 .build();
