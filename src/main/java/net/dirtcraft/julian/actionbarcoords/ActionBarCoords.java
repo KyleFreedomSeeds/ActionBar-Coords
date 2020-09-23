@@ -30,7 +30,7 @@ import java.nio.file.Path;
         name = "ActionBar Coords",
         description = "Neat plugin that shows toggleable coords on your action bar.",
         authors = {"juliann", "Ported LP By KyleCG"},
-	dependencies = @Dependency(id = "luckperms", optional = false)
+		dependencies = @Dependency(id = "luckperms", optional = false)
 )
 public class ActionBarCoords {
 
