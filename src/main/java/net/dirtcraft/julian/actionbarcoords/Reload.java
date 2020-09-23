@@ -10,9 +10,11 @@ import org.spongepowered.api.text.serializer.TextSerializers;
 public class Reload implements CommandExecutor {
 
     public CommandResult execute(CommandSource src, CommandContext args) throws CommandException {
-        src.sendMessage(TextSerializers.FORMATTING_CODE.deserialize("&dHey! &6I'm going to reload ActionBar Coords"));
+        src.sendMessage(TextSerializers.FORMATTING_CODE.deserialize("&aReloading ActionBar Coords..."));
+		logger.info("Reloading ActionBar Coords...");
         ConfigManager.load();
         src.sendMessage(TextSerializers.FORMATTING_CODE.deserialize("&aActionBar Coords was reloaded successfully!"));
+        logger.info("ActionBar Coords was reloaded successfully!");
         return CommandResult.success();
     }
 
