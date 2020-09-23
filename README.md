@@ -47,3 +47,4 @@ Toggle-Menu {
 Updated to LuckPerms API 5.1 by KyleFS.
 Tested with SpongeForge 7.3.1
 
+All credits to original author: https://github.com/d4julian/ActionBar-Coords
