@@ -1,9 +1,10 @@
 package net.dirtcraft.julian.actionbarcoords;
 
 import com.google.inject.Inject;
-import me.lucko.luckperms.LuckPerms;
-import me.lucko.luckperms.api.Group;
-import me.lucko.luckperms.api.Node;
+import net.luckperms.api.*;
+import net.luckperms.api.node.*;
+import net.luckperms.api.model.group.Group;
+import net.luckperms.api.platform.PluginMetadata;
 import org.slf4j.Logger;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.command.CommandSource;
@@ -16,6 +17,7 @@ import org.spongepowered.api.event.game.GameReloadEvent;
 import org.spongepowered.api.event.game.state.GamePreInitializationEvent;
 import org.spongepowered.api.event.game.state.GameStartedServerEvent;
 import org.spongepowered.api.plugin.Plugin;
+import org.spongepowered.api.plugin.Dependency;
 import org.spongepowered.api.plugin.PluginContainer;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.chat.ChatTypes;
@@ -27,9 +29,8 @@ import java.nio.file.Path;
         id = "actionbar-coords",
         name = "ActionBar Coords",
         description = "Neat plugin that shows toggleable coords on your action bar.",
-        authors = {
-                "juliann"
-        }
+        authors = {"juliann", "Ported LP By KyleCG"},
+	dependencies = @Dependency(id = "luckperms", optional = false)
 )
 public class ActionBarCoords {
 
@@ -82,24 +83,22 @@ public class ActionBarCoords {
                 + ")! Hey, I'm alive!");
 
         if (ConfigManager.getConfNode("Action-Bar", "enabled-by-default").getBoolean()) {
-            Group group = LuckPerms.getApi().getGroupManager().getGroup("default");
-            Node permission = LuckPerms.getApi().buildNode("actionbarcoords.enabled")
-                    .setValue(true)
-                    .setServer(lpserverContext)
+            Group group = LuckPermsProvider.get().getGroupManager().getGroup("default");
+            Node permission = Node.builder("actionbarcoords.enabled")
+                    .value(true)
                     .build();
 
-            group.setPermission(permission);
-            LuckPerms.getApi().getGroupManager().saveGroup(group);
+            group.data().add(permission);
+            LuckPermsProvider.get().getGroupManager().saveGroup(group);
         } else if (!ConfigManager.getConfNode("Action-Bar", "enabled-by-default").getBoolean()) {
 
-            Group group = LuckPerms.getApi().getGroupManager().getGroup("default");
-            Node permission = LuckPerms.getApi().buildNode("actionbarcoords.enabled")
-                    .setValue(false)
-                    .setServer(lpserverContext)
+            Group group = LuckPermsProvider.get().getGroupManager().getGroup("default");
+            Node permission = Node.builder("actionbarcoords.enabled")
+                    .value(false)
                     .build();
 
-            group.setPermission(permission);
-            LuckPerms.getApi().getGroupManager().saveGroup(group);
+            group.data().add(permission);
+            LuckPermsProvider.get().getGroupManager().saveGroup(group);
 
         }
 
@@ -123,9 +122,9 @@ public class ActionBarCoords {
 
     @Listener
     public void onReload(GameReloadEvent event) {
-        source.sendMessage(TextSerializers.FORMATTING_CODE.deserialize("&dHey! &6I'm going to reload ActionBar Coords"));
+		logger.info("Reloading ActionBar Coords...");
         ConfigManager.load();
-        source.sendMessage(TextSerializers.FORMATTING_CODE.deserialize("&aActionBar Coords was reloaded successfully!"));
+        logger.info("ActionBar Coords was reloaded successfully!");
     }
 
 
