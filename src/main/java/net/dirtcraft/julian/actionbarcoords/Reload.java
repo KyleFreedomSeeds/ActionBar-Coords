@@ -6,12 +6,13 @@ import org.spongepowered.api.command.CommandSource;
 import org.spongepowered.api.command.args.CommandContext;
 import org.spongepowered.api.command.spec.CommandExecutor;
 import org.spongepowered.api.text.serializer.TextSerializers;
+import org.slf4j.Logger;
 
 public class Reload implements CommandExecutor {
 
     public CommandResult execute(CommandSource src, CommandContext args) throws CommandException {
         src.sendMessage(TextSerializers.FORMATTING_CODE.deserialize("&aReloading ActionBar Coords..."));
-		logger.info("Reloading ActionBar Coords...");
+	logger.info("Reloading ActionBar Coords...");
         ConfigManager.load();
         src.sendMessage(TextSerializers.FORMATTING_CODE.deserialize("&aActionBar Coords was reloaded successfully!"));
         logger.info("ActionBar Coords was reloaded successfully!");
