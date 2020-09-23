@@ -1,8 +1,8 @@
 package net.dirtcraft.julian.actionbarcoords;
 
-import me.lucko.luckperms.LuckPerms;
-import me.lucko.luckperms.api.Node;
-import me.lucko.luckperms.api.User;
+import net.luckperms.api.*;
+import net.luckperms.api.node.*;
+import net.luckperms.api.model.user.*;
 import org.spongepowered.api.command.CommandException;
 import org.spongepowered.api.command.CommandResult;
 import org.spongepowered.api.command.CommandSource;
@@ -62,14 +62,13 @@ public class Menu implements CommandExecutor {
                                         ConfigManager.getConfNode("Toggle-Menu", "enabled").getString()))))
                                 .onClick(TextActions.executeCallback(disable -> {
 
-                                    Optional<User> user = LuckPerms.getApi().getUserSafe(player.getUniqueId());
-                                    Node permission = LuckPerms.getApi().buildNode("actionbarcoords.enabled")
-                                            .setValue(false)
-                                            .setServer(lpserverContext)
+                                    User user =  LuckPermsProvider.get().getUserManager().getUser(player.getUniqueId());
+                                    Node permission = Node.builder("actionbarcoords.enabled")
+                                            .value(false)
                                             .build();
 
-                                    user.get().setPermission(permission);
-                                    LuckPerms.getApi().getUserManager().saveUser(user.get());
+                                    user.data().add(permission);
+                                     LuckPermsProvider.get().getUserManager().saveUser(user);
 
                                     disabledPagination(player);
 
@@ -109,14 +108,13 @@ public class Menu implements CommandExecutor {
                                         ConfigManager.getConfNode("Toggle-Menu", "disabled").getString()))))
                                 .onClick(TextActions.executeCallback(enable->{
 
-                                    Optional<User> user = LuckPerms.getApi().getUserSafe(player.getUniqueId());
-                                    Node permission = LuckPerms.getApi().buildNode("actionbarcoords.enabled")
-                                            .setValue(true)
-                                            .setServer(lpserverContext)
+                                    User user =  LuckPermsProvider.get().getUserManager().getUser(player.getUniqueId());
+                                    Node permission = Node.builder("actionbarcoords.enabled")
+                                            .value(true)
                                             .build();
 
-                                    user.get().setPermission(permission);
-                                    LuckPerms.getApi().getUserManager().saveUser(user.get());
+                                    user.data().add(permission);
+                                    LuckPermsProvider.get().getUserManager().saveUser(user);
 
                                     enablePagination(player);
 
