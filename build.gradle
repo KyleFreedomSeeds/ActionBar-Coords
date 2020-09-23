@@ -10,8 +10,8 @@ repositories {
 }
 
 dependencies {
-    compile 'org.spongepowered:spongeapi:7.1.0-SNAPSHOT'
-    compile 'me.lucko.luckperms:luckperms-api:4.3'
+    compile 'org.spongepowered:spongeapi:7.2.0-SNAPSHOT'
+    compile 'net.luckperms:api:5.1'
 }
 
 sponge.plugin.id = pluginId
